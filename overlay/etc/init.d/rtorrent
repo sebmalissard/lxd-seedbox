@@ -1,0 +1,19 @@
+#!/sbin/openrc-run
+
+description="rtorrent daemon"
+
+command=/usr/bin/rtorrent
+command_user=rtorrent
+pidfile="/run/rtorrent.pid"
+command_background="yes"
+
+depend()
+{
+    need localmount
+}
+
+start_pre()
+{
+    mkdir -p /run/rtorrent
+    chown rtorrent:rtorrent /run/rtorrent
+}
